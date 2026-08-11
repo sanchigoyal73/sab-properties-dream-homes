@@ -32,17 +32,17 @@ const Footer = () => {
               A trusted and reputable name in the real estate sector, delivering exceptional services since establishment.
             </p>
             <div className="flex items-center gap-4">
-              <a 
-                href="https://www.facebook.com/profile.php?id=61579467053882" 
-                target="_blank" 
+              <a
+                href="https://www.facebook.com/profile.php?id=61579467053882"
+                target="_blank"
                 rel="noopener noreferrer"
                 className="w-10 h-10 rounded-full bg-primary-foreground/5 border border-primary-foreground/10 flex items-center justify-center text-primary-foreground/60 hover:text-primary hover:border-primary transition-all group"
               >
                 <Facebook className="w-5 h-5 group-hover:scale-110 transition-transform" />
               </a>
-              <a 
-                href="https://www.instagram.com/sabprop/" 
-                target="_blank" 
+              <a
+                href="https://www.instagram.com/sabprop/"
+                target="_blank"
                 rel="noopener noreferrer"
                 className="w-10 h-10 rounded-full bg-primary-foreground/5 border border-primary-foreground/10 flex items-center justify-center text-primary-foreground/60 hover:text-primary hover:border-primary transition-all group"
               >
@@ -149,10 +149,16 @@ const Footer = () => {
           whileInView={{ opacity: 1 }}
           viewport={{ once: true }}
           transition={{ duration: 0.5, delay: 0.3 }}
-          className="border-t border-primary-foreground/10 pt-8 text-center"
+          className="border-t border-primary-foreground/10 pt-8 text-center flex flex-col gap-1"
         >
           <p className="text-primary-foreground/40 font-body text-sm">
             © {new Date().getFullYear()} SAB Properties Private Limited. All rights reserved.
+          </p>
+          <p className="text-primary-foreground/40 font-body text-sm">
+            A part of SAB Group
+          </p>
+          <p className="text-primary-foreground/30 font-body text-xs mt-2">
+            Disclaimer: Property images are for representational purposes only and may not depict the actual property.
           </p>
         </motion.div>
       </div>

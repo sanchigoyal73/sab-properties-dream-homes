@@ -97,13 +97,21 @@ const OfficeFooter = () => {
         </div>
 
         {/* Copyright */}
-        <div className="pt-8 border-t border-white/5 flex flex-col md:flex-row items-center justify-between gap-4">
-          <p className="text-slate-600 font-body text-xs">
-            © {new Date().getFullYear()} SAB Properties Private Limited. All rights reserved.
-          </p>
-          <div className="flex items-center gap-6 text-slate-600 font-body text-xs">
-             <span>Registered Commercial Estate Agents in Delhi</span>
+        <div className="pt-8 border-t border-white/5 flex flex-col items-center gap-2">
+          <div className="flex flex-col md:flex-row items-center justify-between gap-4 w-full">
+            <p className="text-slate-600 font-body text-xs">
+              © {new Date().getFullYear()} SAB Properties Private Limited. All rights reserved.
+            </p>
+            <div className="flex items-center gap-6 text-slate-600 font-body text-xs">
+               <span>Registered Commercial Estate Agents in Delhi</span>
+            </div>
           </div>
+          <p className="text-slate-600 font-body text-xs mt-2 w-full text-center md:text-left">
+            A part of SAB Group
+          </p>
+          <p className="text-slate-600/70 font-body text-[11px] w-full text-center md:text-left mt-1">
+            Disclaimer: Property images are for representational purposes only and may not depict the actual property.
+          </p>
         </div>
       </div>
 
