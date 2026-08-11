@@ -155,7 +155,7 @@ const Footer = () => {
             © {new Date().getFullYear()} SAB Properties Private Limited. All rights reserved.
           </p>
           <p className="text-primary-foreground/40 font-body text-sm">
-            A part of SAB Group
+            Powered by SAB Group.
           </p>
           <p className="text-primary-foreground/30 font-body text-xs mt-2">
             Disclaimer: Property images are for representational purposes only and may not depict the actual property.
