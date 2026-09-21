@@ -1,10 +1,6 @@
-import { motion } from "framer-motion";
-import {
-  Accordion,
-  AccordionContent,
-  AccordionItem,
-  AccordionTrigger,
-} from "@/components/ui/accordion";
+import { useState } from "react";
+import { motion, AnimatePresence } from "framer-motion";
+import { Plus, Minus } from "lucide-react";
 
 const faqs = [
   {
@@ -42,47 +38,94 @@ const faqs = [
 ];
 
 const FAQSection = () => {
+  const [openIndex, setOpenIndex] = useState<number | null>(null);
+
   return (
-    <section className="py-24 bg-slate-50">
-      <div className="container mx-auto px-4 lg:px-8">
+    <section className="relative py-24 overflow-hidden bg-slate-50">
+      {/* Decorative background elements */}
+      <div className="absolute top-0 left-0 w-full h-px bg-gradient-to-r from-transparent via-primary/20 to-transparent" />
+      <div className="absolute top-40 -left-64 w-96 h-96 bg-primary/5 rounded-full blur-[100px]" />
+      <div className="absolute bottom-10 -right-64 w-96 h-96 bg-orange-500/5 rounded-full blur-[100px]" />
+
+      <div className="container relative z-10 mx-auto px-4 lg:px-8">
         <motion.div
-          initial={{ opacity: 0, scale: 0.95, y: 15 }}
-          whileInView={{ opacity: 1, scale: 1, y: 0 }}
+          initial={{ opacity: 0, y: 20 }}
+          whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true, margin: "-50px" }}
-          transition={{ type: "spring", stiffness: 100, damping: 20, duration: 0.3 }}
+          transition={{ duration: 0.5 }}
           className="text-center mb-16"
         >
-          <span className="inline-block text-primary font-display font-bold text-sm tracking-[0.2em] uppercase mb-4">
+          <span className="inline-flex items-center justify-center px-4 py-1.5 mb-6 text-sm font-semibold tracking-widest text-primary uppercase bg-primary/10 rounded-full">
             Got Questions?
           </span>
-          <h2 className="font-display font-extrabold text-4xl md:text-5xl text-foreground mb-6">
-            Frequently Asked Questions
+          <h2 className="font-display font-extrabold text-4xl md:text-5xl lg:text-6xl text-foreground mb-6 tracking-tight">
+            Frequently Asked <span className="text-transparent bg-clip-text bg-gradient-to-r from-primary to-orange-400">Questions</span>
           </h2>
           <p className="text-muted-foreground font-body text-lg md:text-xl max-w-2xl mx-auto leading-relaxed">
             Find answers to common questions about our real estate services and properties in Delhi.
           </p>
         </motion.div>
 
-        <motion.div
-          initial={{ opacity: 0, y: 20 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          viewport={{ once: true, margin: "-50px" }}
-          transition={{ duration: 0.5 }}
-          className="max-w-3xl mx-auto bg-white p-6 md:p-8 rounded-3xl shadow-lg border border-gray-100"
-        >
-          <Accordion type="single" collapsible className="w-full">
-            {faqs.map((faq, index) => (
-              <AccordionItem key={index} value={`item-${index}`} className="border-b-gray-100 last:border-0 py-2">
-                <AccordionTrigger className="text-left font-display font-semibold text-lg hover:text-primary transition-colors hover:no-underline">
-                  {faq.question}
-                </AccordionTrigger>
-                <AccordionContent className="text-muted-foreground font-body text-base leading-relaxed pt-2 pb-4">
-                  {faq.answer}
-                </AccordionContent>
-              </AccordionItem>
-            ))}
-          </Accordion>
-        </motion.div>
+        <div className="max-w-4xl mx-auto space-y-4">
+          {faqs.map((faq, index) => {
+            const isOpen = openIndex === index;
+            
+            return (
+              <motion.div
+                key={index}
+                initial={{ opacity: 0, y: 20 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                viewport={{ once: true, margin: "-50px" }}
+                transition={{ duration: 0.5, delay: index * 0.1 }}
+                className={`group relative rounded-2xl border transition-all duration-300 ${
+                  isOpen 
+                    ? "bg-white border-primary/20 shadow-[0_8px_30px_rgb(0,0,0,0.04)] shadow-primary/5" 
+                    : "bg-white/60 border-slate-200 hover:bg-white hover:border-slate-300"
+                }`}
+              >
+                {/* Active Indicator Line */}
+                <div 
+                  className={`absolute left-0 top-1/2 -translate-y-1/2 w-1 rounded-r-full transition-all duration-300 ${
+                    isOpen ? "h-12 bg-primary" : "h-0 bg-transparent group-hover:h-6 group-hover:bg-primary/30"
+                  }`}
+                />
+
+                <button
+                  onClick={() => setOpenIndex(isOpen ? null : index)}
+                  className="flex items-center justify-between w-full p-6 sm:p-8 text-left focus:outline-none"
+                >
+                  <span className={`font-display text-lg sm:text-xl font-bold pr-8 transition-colors duration-300 ${
+                    isOpen ? "text-primary" : "text-foreground group-hover:text-primary/80"
+                  }`}>
+                    {faq.question}
+                  </span>
+                  <div className={`flex-shrink-0 w-10 h-10 rounded-full flex items-center justify-center transition-all duration-300 ${
+                    isOpen 
+                      ? "bg-primary text-white rotate-180" 
+                      : "bg-slate-100 text-slate-500 group-hover:bg-primary/10 group-hover:text-primary"
+                  }`}>
+                    {isOpen ? <Minus className="w-5 h-5" /> : <Plus className="w-5 h-5" />}
+                  </div>
+                </button>
+                
+                <AnimatePresence>
+                  {isOpen && (
+                    <motion.div
+                      initial={{ height: 0, opacity: 0 }}
+                      animate={{ height: "auto", opacity: 1 }}
+                      exit={{ height: 0, opacity: 0 }}
+                      transition={{ duration: 0.3, ease: "easeInOut" }}
+                    >
+                      <div className="px-6 pb-6 sm:px-8 sm:pb-8 pt-0 text-muted-foreground font-body text-base sm:text-lg leading-relaxed">
+                        {faq.answer}
+                      </div>
+                    </motion.div>
+                  )}
+                </AnimatePresence>
+              </motion.div>
+            );
+          })}
+        </div>
       </div>
     </section>
   );

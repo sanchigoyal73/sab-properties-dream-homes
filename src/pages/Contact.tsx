@@ -9,7 +9,7 @@ import { toast } from "sonner";
 import Navbar from "@/components/Navbar";
 import Footer from "@/components/Footer";
 import SEO from "@/components/SEO";
-import contactHeroImg from "@/assets/contact-hero.png";
+import contactHeroImg from "@/assets/contactheader.png";
 import { singleNameValidation, phoneValidation, emailValidation, sanitizeName, sanitizePhone, sanitizeEmail } from "@/utils/leadValidation";
 
 const formSchema = z.object({
@@ -108,22 +108,8 @@ const Contact = () => {
       {/* Hero Section with Image */}
       <section className="relative h-[50vh] flex items-center justify-center overflow-hidden">
         <div className="absolute inset-0">
-          <img src={contactHeroImg} alt="Contact Us" className="w-full h-full object-cover" />
-          <div className="absolute inset-0 bg-black/60" />
+          <img src={contactHeroImg} alt="Contact Us" className="w-full h-full object-cover object-[center_25%]" />
         </div>
-        <motion.div
-          initial={{ opacity: 0, scale: 0.95, y: 20 }}
-          animate={{ opacity: 1, scale: 1, y: 0 }}
-          transition={{ type: "spring", stiffness: 100, damping: 20, duration: 0.3 }}
-          className="relative text-center px-4"
-        >
-          <h1 className="font-display font-extrabold text-5xl md:text-6xl lg:text-7xl text-white mb-6">
-            Contact Us
-          </h1>
-          <p className="text-white/80 font-body text-base md:text-lg lg:text-xl max-w-4xl mx-auto leading-relaxed">
-            Get in touch with our team of experts
-          </p>
-        </motion.div>
       </section>
 
       {/* Property Inquiry Banner */}

@@ -5,6 +5,7 @@ import ServicesSection from "@/components/ServicesSection";
 import WhyChooseUs from "@/components/WhyChooseUs";
 import PropertiesSection from "@/components/PropertiesSection";
 import TrustedBy from "@/components/TrustedBy";
+import FAQSection from "@/components/FAQSection";
 import CTASection from "@/components/CTASection";
 import Footer from "@/components/Footer";
 import SEO from "@/components/SEO";
@@ -25,6 +26,7 @@ const Index = () => {
       <WhyChooseUs />
       <PropertiesSection />
       <TrustedBy />
+      <FAQSection />
       <CTASection />
       <Footer />
     </div>

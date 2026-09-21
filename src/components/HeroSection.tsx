@@ -104,7 +104,7 @@ const HeroSection = () => {
             >
               <div className="flex flex-col items-center gap-2 text-white">
                 <span className="font-display font-bold text-3xl md:text-5xl text-primary drop-shadow-[0_0_15px_rgba(249,115,22,0.5)]">
-                  <Counter to={15} />
+                  <Counter to={30} />
                 </span>
                 <span className="font-body text-[10px] md:text-xs text-white/60 tracking-[0.2em] uppercase">Years Expertise</span>
               </div>

@@ -12,7 +12,7 @@ const LandingPage = () => {
     <div className="min-h-screen bg-[#0A0A0A]">
       <SEO 
         title="Exclusive Commercial Property Offers | SAB Properties Delhi"
-        description="Get exclusive access to premium office spaces, showrooms, and warehouses in Delhi. Expert consultancy with 15+ years of experience."
+        description="Get exclusive access to premium office spaces, showrooms, and warehouses in Delhi. Expert consultancy with 30+ years of experience."
         canonical="/exclusive-offer"
         useBusinessSchema={true}
       />

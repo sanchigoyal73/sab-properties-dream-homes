@@ -104,7 +104,7 @@ const OfficeLandingPage = () => {
     <div className="min-h-screen bg-white">
       <SEO 
         title="Best Premium Office Space in Delhi | Managed & Raw Spaces"
-        description="Looking for office space in Delhi? Find premium managed, plug-and-play, and raw office spaces in Central Delhi, Asaf Ali Road, and South Delhi. 15+ years of experience."
+        description="Looking for office space in Delhi? Find premium managed, plug-and-play, and raw office spaces in Central Delhi, Asaf Ali Road, and South Delhi. 30+ years of experience."
         canonical="/office-space-delhi"
         useBusinessSchema={true}
       />

@@ -283,7 +283,7 @@ const OfficeHero = () => {
               </div>
               <div className="flex items-center gap-2.5">
                 <Star className="w-5 h-5 text-primary/70" />
-                <span className="text-slate-300 font-medium text-sm">15+ Years</span>
+                <span className="text-slate-300 font-medium text-sm">30+ Years</span>
               </div>
             </div>
           </div>

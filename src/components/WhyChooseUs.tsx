@@ -25,7 +25,7 @@ const benefits = [
   },
   {
     icon: Award,
-    title: "15+ Years Expertise",
+    title: "30+ Years Expertise",
     description: "With years of experience in real estate, our team brings expertise and insights to guide you through every step.",
   },
   {

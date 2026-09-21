@@ -11,7 +11,7 @@ const team = [
     name: "Sanjay Gupta",
     role: "Founder and Managing Director",
     image: "/images/team/SG.png",
-    description: "With over four decades of extensive experience in the commercial real estate industry, Sanjay Gupta is the visionary behind SAB Properties. He brings a wealth of market knowledge, strategic foresight, and unparalleled expertise to the team. His leadership ensures exceptional service delivery, driving high-value transactions and securing optimal results for all premium clients.",
+    description: "Sanjay Gupta is a real estate professional with more than forty years of experience across Delhi’s ever-changing property market. Sanjay Gupta’s career is deeply dedicated to the real estate industry, with an extended focus on Central Delhi and the Asaf Ali Road market. Over the years, Sanjay Gupta has seen many traditional office leasing and warm-shell spaces evolve into modern business centres, furnished offices, flexible workspaces and suitable coworking environments.",
   },
   {
     name: "Kushagra Gupta",
@@ -212,7 +212,7 @@ const About = () => {
                   {/* Decorative Accent Line */}
                   <div className="w-10 h-[2px] bg-orange/40 mb-5 rounded-full group-hover:w-20 group-hover:bg-orange transition-all duration-500" />
 
-                  <p className="text-muted-foreground font-body text-sm leading-relaxed mb-4 opacity-90 group-hover:opacity-100 transition-opacity">
+                  <p className="text-muted-foreground font-body text-sm leading-relaxed mb-4 opacity-90 group-hover:opacity-100 transition-opacity whitespace-pre-line">
                     {member.description}
                   </p>
 

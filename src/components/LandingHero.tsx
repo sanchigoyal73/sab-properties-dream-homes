@@ -125,7 +125,7 @@ const LandingHero = () => {
             <div className="grid grid-cols-2 gap-8 mb-12">
               <div className="flex flex-col gap-1">
                 <span className="font-display font-black text-3xl md:text-4xl text-white">
-                  <Counter to={15} />
+                  <Counter to={30} />
                 </span>
                 <span className="text-white/40 text-xs font-bold tracking-widest uppercase">Years Experience</span>
               </div>
