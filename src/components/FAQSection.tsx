@@ -116,7 +116,7 @@ const FAQSection = () => {
                       exit={{ height: 0, opacity: 0 }}
                       transition={{ duration: 0.3, ease: "easeInOut" }}
                     >
-                      <div className="px-6 pb-6 sm:px-8 sm:pb-8 pt-0 text-muted-foreground font-body text-base sm:text-lg leading-relaxed">
+                      <div className="px-6 pb-6 sm:px-8 sm:pb-8 pt-0 text-muted-foreground font-body text-base sm:text-lg leading-relaxed text-justify">
                         {faq.answer}
                       </div>
                     </motion.div>
