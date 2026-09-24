@@ -83,44 +83,28 @@ const PropertiesSection = () => {
   };
 
   return (
-    <section className="relative py-32 overflow-hidden bg-slate-50">
+    <section className="relative py-24 overflow-hidden bg-slate-50">
       {/* Premium Decorative background elements */}
-      <div className="absolute top-0 right-0 w-[800px] h-[800px] bg-gradient-to-br from-primary/10 to-orange-500/5 rounded-full blur-3xl -translate-y-1/2 translate-x-1/3" />
-      <div className="absolute bottom-0 left-0 w-[600px] h-[600px] bg-gradient-to-tr from-primary/5 to-transparent rounded-full blur-3xl translate-y-1/3 -translate-x-1/4" />
+      <div className="absolute top-0 right-0 w-[800px] h-[800px] bg-gradient-to-br from-primary/5 to-orange-500/5 rounded-full blur-3xl -translate-y-1/2 translate-x-1/3 pointer-events-none" />
+      <div className="absolute bottom-0 left-0 w-[600px] h-[600px] bg-gradient-to-tr from-primary/5 to-transparent rounded-full blur-3xl translate-y-1/3 -translate-x-1/4 pointer-events-none" />
       
       <div className="container relative z-10 mx-auto px-4 lg:px-8">
         <motion.div
-          initial={{ opacity: 0, y: 20 }}
-          whileInView={{ opacity: 1, y: 0 }}
+          initial={{ opacity: 0, scale: 0.95, y: 15 }}
+          whileInView={{ opacity: 1, scale: 1, y: 0 }}
           viewport={{ once: true, margin: "-50px" }}
-          transition={{ duration: 0.6, ease: "easeOut" }}
-          className="flex flex-col md:flex-row md:items-end justify-between mb-16 gap-6"
+          transition={{ type: "spring", stiffness: 100, damping: 20, duration: 0.3 }}
+          className="text-center mb-16"
         >
-          <div className="max-w-2xl">
-            <div className="flex items-center gap-2 mb-4">
-              <span className="w-10 h-[2px] bg-primary"></span>
-              <span className="text-primary font-display font-semibold text-sm tracking-[0.2em] uppercase">
-                Exclusive Collection
-              </span>
-            </div>
-            <h2 className="font-display font-extrabold text-4xl md:text-5xl lg:text-6xl text-foreground leading-tight">
-              Curated Premium <br className="hidden md:block" />
-              <span className="text-transparent bg-clip-text bg-gradient-to-r from-primary to-orange-400">Properties</span>
-            </h2>
-            <p className="text-muted-foreground font-body text-lg md:text-xl lg:text-2xl mt-6 max-w-2xl">
-              Discover our handpicked selection of exceptional commercial spaces, designed to elevate your business presence in Delhi's most prestigious locations.
-            </p>
-          </div>
-          
-          <Link
-            to="/properties"
-            className="hidden md:inline-flex items-center gap-2 text-foreground font-display font-semibold group"
-          >
-            Explore All Properties
-            <div className="w-10 h-10 rounded-full bg-white shadow-sm border border-border flex items-center justify-center group-hover:bg-primary group-hover:text-white transition-all duration-300">
-              <ArrowRight className="w-4 h-4" />
-            </div>
-          </Link>
+          <span className="inline-block text-primary font-display font-bold text-sm tracking-[0.2em] uppercase mb-4">
+            Exclusive Collection
+          </span>
+          <h2 className="font-display font-extrabold text-4xl md:text-5xl lg:text-6xl text-foreground mb-6">
+            Curated Premium <span className="text-transparent bg-clip-text bg-gradient-to-r from-primary to-orange-400">Properties</span>
+          </h2>
+          <p className="text-muted-foreground font-body text-lg md:text-xl lg:text-2xl max-w-4xl mx-auto leading-relaxed">
+            Discover our handpicked selection of exceptional commercial spaces, designed to elevate your business presence in Delhi's most prestigious locations.
+          </p>
         </motion.div>
 
         <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
@@ -131,7 +115,7 @@ const PropertiesSection = () => {
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true, margin: "-50px" }}
               transition={{ duration: 0.6, delay: i * 0.1, ease: "easeOut" }}
-              className="group relative bg-white rounded-[2rem] overflow-hidden shadow-sm border border-slate-100 hover:border-primary/20 hover:shadow-[0_20px_40px_-15px_rgba(0,0,0,0.1)] transition-all duration-500 hover:-translate-y-2 cursor-pointer"
+              className="group shadow-lg hover:shadow-2xl transition-all duration-500 hover:-translate-y-2 rounded-2xl cursor-pointer"
               onClick={() => {
                 if (property.category === "Pre-Rented") {
                   navigate(`/property/${property.id}`);
@@ -140,91 +124,91 @@ const PropertiesSection = () => {
                 }
               }}
             >
-              <div className="relative h-[300px] overflow-hidden m-2 rounded-[1.5rem]">
-                <img
-                  src={property.image}
-                  alt={property.title}
-                  className="w-full h-full object-cover group-hover:scale-110 transition-transform duration-700 ease-in-out"
-                />
-                <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-black/20 to-transparent opacity-60 group-hover:opacity-80 transition-opacity duration-300" />
-                
-                <div className="absolute top-4 left-4 flex flex-wrap gap-2">
-                  <span className="bg-white/90 backdrop-blur-md text-foreground font-display font-bold text-xs px-3 py-1.5 rounded-full shadow-sm">
-                    {property.category}
-                  </span>
-                  {property.featured && (
-                    <span className="bg-primary/90 backdrop-blur-md text-white flex items-center gap-1 font-display font-bold text-xs px-3 py-1.5 rounded-full shadow-sm">
-                      <Star className="w-3 h-3 fill-current" />
-                      Featured
+              <div className="relative bg-white rounded-2xl overflow-hidden border border-gray-100 h-full [transform:translateZ(0)]">
+                <div className="relative h-[280px] overflow-hidden">
+                  <img
+                    src={property.image}
+                    alt={property.title}
+                    className="w-full h-full object-cover group-hover:scale-110 transition-transform duration-700 ease-in-out"
+                  />
+                  <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-black/20 to-transparent opacity-60 group-hover:opacity-80 transition-opacity duration-300" />
+                  
+                  <div className="absolute top-4 left-4 flex flex-wrap gap-2">
+                    <span className="bg-white/90 backdrop-blur-md text-foreground font-display font-bold text-xs px-3 py-1.5 rounded-full shadow-sm">
+                      {property.category}
                     </span>
-                  )}
-                </div>
-
-
-              </div>
-
-              <div className="p-6 pt-4">
-                <h3 className="font-display font-semibold text-xl text-foreground mb-2 line-clamp-1 group-hover:text-primary transition-colors">
-                  {property.title}
-                </h3>
-
-                {/* Location and Seats Info */}
-                <div className="flex items-center gap-2 mb-6 group/loc">
-                  <div className="flex-shrink-0 w-6 h-6 rounded-md bg-slate-50 flex items-center justify-center text-slate-400 group-hover/loc:bg-primary/5 group-hover/loc:text-primary transition-colors">
-                    <MapPin className="w-3.5 h-3.5" />
-                  </div>
-                  <div className="flex items-center gap-2 text-[13px] font-medium tracking-wide text-slate-500 truncate">
-                    <span className="text-slate-700 font-semibold">{property.location}</span>
-                    <span className="text-slate-300">•</span>
-                    <span className="truncate">{property.seats}</span>
-                  </div>
-                </div>
-
-                {/* Features Checklist */}
-                <div className="space-y-2.5 mb-8">
-                  {(property.highlights || []).slice(0, 3).map((feature, index) => (
-                    <div key={index} className="flex items-center gap-2.5 group/item">
-                      <div className="flex-shrink-0 w-5 h-5 rounded-full bg-primary/10 flex items-center justify-center text-primary">
-                        <Check className="w-3 h-3" />
-                      </div>
-                      <span className="text-[13px] text-muted-foreground font-medium group-hover/item:text-foreground transition-colors truncate">
-                        {feature}
+                    {property.featured && (
+                      <span className="bg-primary/90 backdrop-blur-md text-white flex items-center gap-1 font-display font-bold text-xs px-3 py-1.5 rounded-full shadow-sm">
+                        <Star className="w-3 h-3 fill-current" />
+                        Featured
                       </span>
-                    </div>
-                  ))}
+                    )}
+                  </div>
                 </div>
-                               <div className="flex items-center justify-between pt-5 border-t border-slate-100">
-                  {property.category === "Pre-Rented" ? (
-                    <>
-                      <div className="flex flex-col">
-                        <span className="text-[10px] text-muted-foreground uppercase tracking-[0.15em] font-medium mb-1">Monthly Rent</span>
-                        <span className="flex items-center gap-1.5 text-sm font-display font-bold text-foreground">
-                          <Zap className="w-4 h-4 text-primary" />
-                          ₹{typeof property.rent === 'number' ? property.rent.toLocaleString() : property.rent}
-                        </span>
-                      </div>
-                      <div className="flex items-center gap-2 text-sm font-display font-bold text-primary hover:text-orange-600 transition-colors uppercase tracking-widest group/btn">
-                         <span>Learn More</span>
-                         <ArrowRight className="w-4 h-4 translate-x-0 group-hover/btn:translate-x-1 transition-transform" />
-                      </div>
-                    </>
-                  ) : (
-                    <>
-                      <div className="flex flex-col">
-                        <span className="text-[10px] text-muted-foreground uppercase tracking-[0.15em] font-medium mb-1">Space</span>
-                        <span className="flex items-center gap-1.5 text-sm font-display font-bold text-foreground">
-                          <Maximize className="w-4 h-4 text-primary" />
-                          {property.area}
-                        </span>
-                      </div>
 
-                      <button className="flex items-center gap-2 text-sm font-display font-bold text-primary hover:text-orange-600 transition-colors uppercase tracking-widest group/btn">
-                        {!isUnlocked && <Lock className="w-4 h-4" />}
-                        <span>{isUnlocked ? "View Details" : "Unlock"}</span>
-                        <ArrowRight className="w-4 h-4 translate-x-0 group-hover/btn:translate-x-1 transition-transform" />
-                      </button>
-                    </>
-                  )}
+                <div className="p-6 pt-4">
+                  <h3 className="font-display font-semibold text-xl text-foreground mb-2 line-clamp-1 group-hover:text-primary transition-colors">
+                    {property.title}
+                  </h3>
+
+                  {/* Location and Seats Info */}
+                  <div className="flex items-center gap-2 mb-6 group/loc">
+                    <div className="flex-shrink-0 w-6 h-6 rounded-md bg-slate-50 flex items-center justify-center text-slate-400 group-hover/loc:bg-primary/5 group-hover/loc:text-primary transition-colors">
+                      <MapPin className="w-3.5 h-3.5" />
+                    </div>
+                    <div className="flex items-center gap-2 text-[13px] font-medium tracking-wide text-slate-500 truncate">
+                      <span className="text-slate-700 font-semibold">{property.location}</span>
+                      <span className="text-slate-300">•</span>
+                      <span className="truncate">{property.seats}</span>
+                    </div>
+                  </div>
+
+                  {/* Features Checklist */}
+                  <div className="space-y-2.5 mb-8">
+                    {(property.highlights || []).slice(0, 3).map((feature, index) => (
+                      <div key={index} className="flex items-center gap-2.5 group/item">
+                        <div className="flex-shrink-0 w-5 h-5 rounded-full bg-primary/10 flex items-center justify-center text-primary">
+                          <Check className="w-3 h-3" />
+                        </div>
+                        <span className="text-[13px] text-muted-foreground font-medium group-hover/item:text-foreground transition-colors truncate">
+                          {feature}
+                        </span>
+                      </div>
+                    ))}
+                  </div>
+                  <div className="flex items-center justify-between pt-5 border-t border-slate-100">
+                    {property.category === "Pre-Rented" ? (
+                      <>
+                        <div className="flex flex-col">
+                          <span className="text-[10px] text-muted-foreground uppercase tracking-[0.15em] font-medium mb-1">Monthly Rent</span>
+                          <span className="flex items-center gap-1.5 text-sm font-display font-bold text-foreground">
+                            <Zap className="w-4 h-4 text-primary" />
+                            ₹{typeof property.rent === 'number' ? property.rent.toLocaleString() : property.rent}
+                          </span>
+                        </div>
+                        <div className="flex items-center gap-2 text-sm font-display font-bold text-primary hover:text-orange-600 transition-colors uppercase tracking-widest group/btn">
+                           <span>Learn More</span>
+                           <ArrowRight className="w-4 h-4 translate-x-0 group-hover/btn:translate-x-1 transition-transform" />
+                        </div>
+                      </>
+                    ) : (
+                      <>
+                        <div className="flex flex-col">
+                          <span className="text-[10px] text-muted-foreground uppercase tracking-[0.15em] font-medium mb-1">Space</span>
+                          <span className="flex items-center gap-1.5 text-sm font-display font-bold text-foreground">
+                            <Maximize className="w-4 h-4 text-primary" />
+                            {property.area}
+                          </span>
+                        </div>
+
+                        <button className="flex items-center gap-2 text-sm font-display font-bold text-primary hover:text-orange-600 transition-colors uppercase tracking-widest group/btn">
+                          {!isUnlocked && <Lock className="w-4 h-4" />}
+                          <span>{isUnlocked ? "View Details" : "Unlock"}</span>
+                          <ArrowRight className="w-4 h-4 translate-x-0 group-hover/btn:translate-x-1 transition-transform" />
+                        </button>
+                      </>
+                    )}
+                  </div>
                 </div>
               </div>
             </motion.div>
@@ -232,14 +216,18 @@ const PropertiesSection = () => {
         </div>
 
         <motion.div
-           initial={{ opacity: 0, y: 20 }}
-           whileInView={{ opacity: 1, y: 0 }}
-           viewport={{ once: true }}
-           className="mt-12 text-center md:hidden"
+           initial={{ opacity: 0, scale: 0.95, y: 15 }}
+           whileInView={{ opacity: 1, scale: 1, y: 0 }}
+           viewport={{ once: true, margin: "-50px" }}
+           transition={{ type: "spring", stiffness: 100, damping: 20, duration: 0.3 }}
+           className="mt-16 text-center"
         >
+          <p className="text-muted-foreground font-body text-lg mb-6">
+            Looking for more exclusive options?
+          </p>
           <Link
             to="/properties"
-            className="inline-flex items-center gap-2 gradient-orange text-white font-display font-bold px-8 py-4 rounded-xl shadow-lg"
+            className="inline-flex items-center gap-2 gradient-orange text-white font-display font-bold px-8 py-4 rounded-xl hover:opacity-90 transition-all shadow-lg"
           >
             Explore All Properties
             <ArrowRight className="w-5 h-5" />
@@ -277,7 +265,7 @@ const PropertiesSection = () => {
             >
               {!submitted ? (
                 <>
-                  <div className="relative h-48">
+                  <div className="relative h-48 overflow-hidden rounded-t-3xl [transform:translateZ(0)]">
                     <img
                       src={selectedProperty.image}
                       alt={selectedProperty.title}

@@ -73,25 +73,26 @@ const ServiceBoxes = () => {
         </motion.div>
 
         {/* Bento Grid layout */}
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-5 gap-4 lg:gap-6">
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4 lg:gap-6">
           {categories.map((category, i) => (
             <motion.div
               key={category.id}
-              initial={{ opacity: 0, scale: 0.88, y: 30 }}
+              initial={{ opacity: 0, scale: 0.95, y: 30 }}
               whileInView={{ opacity: 1, scale: 1, y: 0 }}
               viewport={{ once: true, margin: "-60px" }}
               transition={{ type: "spring", stiffness: 130, damping: 18, delay: i * 0.07 }}
+              className={`group shadow-lg hover:shadow-2xl transition-all duration-500 hover:-translate-y-1 rounded-[2rem] cursor-pointer ${i === 0 ? "md:col-span-2 lg:col-span-2" : "col-span-1"}`}
             >
               <Link
                 to={category.link}
-                className="group relative h-[420px] md:h-[500px] rounded-3xl overflow-hidden block shadow-lg transition-all duration-500 hover:shadow-2xl hover:-translate-y-1 bg-white"
+                className="relative h-[320px] md:h-[380px] rounded-[2rem] overflow-hidden block [-webkit-mask-image:-webkit-radial-gradient(white,black)] [transform:translateZ(0)]"
               >
                 {/* Background Image and Zoom Effect */}
                 <div className="absolute inset-0 z-0">
                   <img
                     src={category.image}
                     alt={category.title}
-                    className="w-full h-full object-cover transition-transform duration-[1500ms] group-hover:scale-[1.15]"
+                    className="w-full h-full object-cover transition-transform duration-[1500ms] group-hover:scale-[1.10]"
                   />
                 </div>
 
@@ -100,35 +101,36 @@ const ServiceBoxes = () => {
                 <div className="absolute inset-0 z-10 bg-black/10 group-hover:bg-primary/20 mix-blend-multiply transition-colors duration-700" />
 
                 {/* Content Overlay */}
-                <div className="absolute inset-0 z-20 flex flex-col justify-end p-6">
+                <div className="absolute inset-0 z-20 flex flex-col justify-end p-8">
                   <div className="transform transition-transform duration-500 ease-out group-hover:-translate-y-2">
                     {/* Category Title */}
-                    <h3 className="font-display font-bold text-xl lg:text-2xl xl:text-3xl text-white tracking-wider uppercase mb-2 drop-shadow-md">
+                    <h3 className="font-display font-extrabold text-2xl lg:text-3xl text-white tracking-wider uppercase mb-2 drop-shadow-md">
                       {category.title}
                     </h3>
 
                     {/* Properties Count */}
-                    <p className="font-body font-semibold text-xs text-primary tracking-widest uppercase mb-1">
+                    <p className="font-body font-bold text-xs text-primary tracking-[0.2em] uppercase mb-1">
                       {category.properties}
                     </p>
                   </div>
 
                   {/* Sliding Glass Panel Description & CTA */}
                   <div className="overflow-hidden">
-                    <div className="h-0 opacity-0 transform translate-y-6 group-hover:h-[90px] group-hover:opacity-100 group-hover:translate-y-0 transition-all duration-500 ease-out delay-75">
-                      <p className="font-body text-white/80 text-xs md:text-base leading-relaxed mb-4">
-                        {category.description}
-                      </p>
-                      <span className="inline-flex items-center gap-2 text-white font-display font-bold text-xs uppercase tracking-widest hover:text-primary transition-colors">
-                        {category.cta}
-                        <ArrowRight className="w-4 h-4 group-hover:translate-x-1 transition-transform duration-300" />
-                      </span>
+                    <div className="grid grid-rows-[0fr] opacity-0 group-hover:grid-rows-[1fr] group-hover:opacity-100 transition-all duration-500 ease-out">
+                      <div className="overflow-hidden">
+                        <div className="pt-4 pb-2">
+                          <p className="font-body text-white/90 text-sm md:text-base leading-relaxed mb-4">
+                            {category.description}
+                          </p>
+                          <span className="inline-flex items-center gap-2 text-white font-display font-bold text-xs uppercase tracking-[0.15em] hover:text-primary transition-colors">
+                            {category.cta}
+                            <ArrowRight className="w-4 h-4 group-hover:translate-x-1 transition-transform duration-300" />
+                          </span>
+                        </div>
+                      </div>
                     </div>
                   </div>
                 </div>
-
-                {/* Decorative glow line on hover */}
-                <div className="absolute top-0 left-0 w-full h-1 bg-gradient-to-r from-transparent via-primary to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-700 z-30 shadow-[0_0_20px_rgba(249,115,22,0.8)]" />
               </Link>
             </motion.div>
           ))}
