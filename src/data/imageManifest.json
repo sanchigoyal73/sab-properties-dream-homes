@@ -1,0 +1,378 @@
+{
+  "/officeSpaces/officeSpace1.jpg": {
+    "base": "/optimized/officeSpaces/officeSpace1",
+    "widths": [
+      640,
+      960,
+      1280,
+      1920
+    ],
+    "ratio": 0.5625
+  },
+  "/officeSpaces/officeSpace5.jpg": {
+    "base": "/optimized/officeSpaces/officeSpace5",
+    "widths": [
+      640,
+      960,
+      1280,
+      1920,
+      1920
+    ],
+    "ratio": 0.4501
+  },
+  "/officeSpaces/officeSpace3.jpg": {
+    "base": "/optimized/officeSpaces/officeSpace3",
+    "widths": [
+      640,
+      960,
+      1280,
+      1920,
+      1920
+    ],
+    "ratio": 0.6667
+  },
+  "/officeSpaces/officeSpace4.jpg": {
+    "base": "/optimized/officeSpaces/officeSpace4",
+    "widths": [
+      640,
+      960,
+      1280,
+      1920,
+      1920
+    ],
+    "ratio": 0.75
+  },
+  "/officeSpaces/officeSpace2.jpg": {
+    "base": "/optimized/officeSpaces/officeSpace2",
+    "widths": [
+      640,
+      736
+    ],
+    "ratio": 0.75
+  },
+  "/officeSpaces/officeSpace6.jpg": {
+    "base": "/optimized/officeSpaces/officeSpace6",
+    "widths": [
+      640,
+      960,
+      1280,
+      1920,
+      1920
+    ],
+    "ratio": 0.6667
+  },
+  "/godown/godown.jpg": {
+    "base": "/optimized/godown/godown",
+    "widths": [
+      640,
+      960,
+      1280,
+      1920,
+      1920
+    ],
+    "ratio": 1
+  },
+  "/godown/godown1.png": {
+    "base": "/optimized/godown/godown1",
+    "widths": [
+      640,
+      960,
+      1280,
+      1920,
+      1920
+    ],
+    "ratio": 0.653
+  },
+  "/godown/godown2.jpg": {
+    "base": "/optimized/godown/godown2",
+    "widths": [
+      640,
+      960,
+      1280,
+      1920
+    ],
+    "ratio": 0.6667
+  },
+  "/showroom/showroom.jpg": {
+    "base": "/optimized/showroom/showroom",
+    "widths": [
+      640,
+      960,
+      1280,
+      1920,
+      1920
+    ],
+    "ratio": 0.667
+  },
+  "/showroom/showroom2.jpg": {
+    "base": "/optimized/showroom/showroom2",
+    "widths": [
+      640,
+      960,
+      1280,
+      1920
+    ],
+    "ratio": 0.6667
+  },
+  "/showroom/showroom1.png": {
+    "base": "/optimized/showroom/showroom1",
+    "widths": [
+      640,
+      960,
+      1280,
+      1920,
+      1920
+    ],
+    "ratio": 0.75
+  },
+  "/coworking/co-work.png": {
+    "base": "/optimized/coworking/co-work",
+    "widths": [
+      640,
+      960,
+      1280,
+      1536
+    ],
+    "ratio": 0.6667
+  },
+  "/coworking/co-work1.jpg": {
+    "base": "/optimized/coworking/co-work1",
+    "widths": [
+      640,
+      960,
+      1280,
+      1920
+    ],
+    "ratio": 0.6667
+  },
+  "/coworking/co-work2.jpg": {
+    "base": "/optimized/coworking/co-work2",
+    "widths": [
+      640,
+      960,
+      1280,
+      1920
+    ],
+    "ratio": 0.6667
+  },
+  "/coworking/co-work3.jpg": {
+    "base": "/optimized/coworking/co-work3",
+    "widths": [
+      640,
+      960,
+      1280,
+      1920
+    ],
+    "ratio": 0.6667
+  },
+  "/officeSpaces/officeSpace7.JPG": {
+    "base": "/optimized/officeSpaces/officeSpace7",
+    "widths": [
+      640,
+      960,
+      1200
+    ],
+    "ratio": 0.7308
+  },
+  "/showroom/showroom3.png": {
+    "base": "/optimized/showroom/showroom3",
+    "widths": [
+      640,
+      960,
+      1280,
+      1536
+    ],
+    "ratio": 0.6667
+  },
+  "/showroom/showroom4.jpg": {
+    "base": "/optimized/showroom/showroom4",
+    "widths": [
+      640,
+      960,
+      1280,
+      1920
+    ],
+    "ratio": 0.6667
+  },
+  "/godown/godown3.jpg": {
+    "base": "/optimized/godown/godown3",
+    "widths": [
+      640,
+      960,
+      1280,
+      1920
+    ],
+    "ratio": 0.6667
+  },
+  "/officeSpaces/officeSpace8.jpeg": {
+    "base": "/optimized/officeSpaces/officeSpace8",
+    "widths": [
+      640,
+      960,
+      1280
+    ],
+    "ratio": 0.75
+  },
+  "/showroom/showroom5.jpg": {
+    "base": "/optimized/showroom/showroom5",
+    "widths": [
+      640,
+      960,
+      1280,
+      1920
+    ],
+    "ratio": 0.6667
+  },
+  "/godown/godown4.jpg": {
+    "base": "/optimized/godown/godown4",
+    "widths": [
+      640,
+      960,
+      1280,
+      1920
+    ],
+    "ratio": 0.6667
+  },
+  "/officeSpaces/officeSpace9.jpg": {
+    "base": "/optimized/officeSpaces/officeSpace9",
+    "widths": [
+      640,
+      960,
+      1280,
+      1920,
+      1920
+    ],
+    "ratio": 0.6667
+  },
+  "/officeSpaces/officeSpace10.jpg": {
+    "base": "/optimized/officeSpaces/officeSpace10",
+    "widths": [
+      640,
+      960,
+      1280,
+      1920,
+      1920
+    ],
+    "ratio": 0.6719
+  },
+  "/showroom/showroom6.jpg": {
+    "base": "/optimized/showroom/showroom6",
+    "widths": [
+      640,
+      960,
+      1280,
+      1920
+    ],
+    "ratio": 0.6667
+  },
+  "/pre-rented/preRented.jpg": {
+    "base": "/optimized/pre-rented/preRented",
+    "widths": [
+      640,
+      960,
+      1280,
+      1920
+    ],
+    "ratio": 0.6667
+  },
+  "/pre-rented/preRented1.jpg": {
+    "base": "/optimized/pre-rented/preRented1",
+    "widths": [
+      640,
+      960,
+      1280,
+      1920
+    ],
+    "ratio": 0.6667
+  },
+  "/pre-rented/preRented2.jpg": {
+    "base": "/optimized/pre-rented/preRented2",
+    "widths": [
+      640,
+      960,
+      1280,
+      1920
+    ],
+    "ratio": 0.6667
+  },
+  "/pre-rented/preRented3.jpg": {
+    "base": "/optimized/pre-rented/preRented3",
+    "widths": [
+      640,
+      960,
+      1280,
+      1920
+    ],
+    "ratio": 0.6667
+  },
+  "/pre-rented/preRented4.jpg": {
+    "base": "/optimized/pre-rented/preRented4",
+    "widths": [
+      640,
+      960,
+      1280,
+      1920
+    ],
+    "ratio": 0.6667
+  },
+  "/pre-rented/preRented5.jpg": {
+    "base": "/optimized/pre-rented/preRented5",
+    "widths": [
+      640,
+      960,
+      1280,
+      1920
+    ],
+    "ratio": 0.6667
+  },
+  "/pre-rented/preRented6.jpg": {
+    "base": "/optimized/pre-rented/preRented6",
+    "widths": [
+      640,
+      960,
+      1280,
+      1920
+    ],
+    "ratio": 0.6667
+  },
+  "/pre-rented/preRented7.jpg": {
+    "base": "/optimized/pre-rented/preRented7",
+    "widths": [
+      640,
+      960,
+      1280,
+      1920
+    ],
+    "ratio": 0.6667
+  },
+  "/pre-rented/preRented8.jpg": {
+    "base": "/optimized/pre-rented/preRented8",
+    "widths": [
+      640,
+      960,
+      1280,
+      1920
+    ],
+    "ratio": 0.6667
+  },
+  "/pre-rented/preRented9.jpg": {
+    "base": "/optimized/pre-rented/preRented9",
+    "widths": [
+      640,
+      960,
+      1280,
+      1920
+    ],
+    "ratio": 0.6667
+  },
+  "/pre-rented/preRented10.jpg": {
+    "base": "/optimized/pre-rented/preRented10",
+    "widths": [
+      640,
+      960,
+      1280,
+      1920
+    ],
+    "ratio": 0.6667
+  }
+}

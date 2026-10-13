@@ -7,6 +7,7 @@ import Footer from "@/components/Footer";
 import SEO from "@/components/SEO";
 import propertiesImg from "@/assets/properties.jpg";
 import propertyHeroImg from "@/assets/property-hero.png";
+import ResponsiveImage from "@/components/ResponsiveImage";
 
 const locations = ["All Locations", "Asaf Ali Road", "Connaught Place", "Karol Bagh", "Okhla", "Lajpat Nagar", "East of Kailash", "Kirti Nagar"];
 const propertyTypes = ["All Types", "Office/Serviced Office", "Showroom", "Godown", "Co-Working", "Pre-Rented"];
@@ -399,9 +400,10 @@ const Properties = () => {
                   }}
                 >
                   <div className="relative h-[320px] overflow-hidden m-2.5 rounded-[2rem]">
-                    <img
+                    <ResponsiveImage
                       src={property.image}
                       alt={property.title}
+                      sizes="(min-width: 1280px) 34vw, (min-width: 1024px) 480px, (min-width: 768px) 50vw, (min-width: 480px) 100vw, 480px"
                       className="w-full h-full object-cover group-hover:scale-110 transition-transform duration-1000 ease-in-out filter brightness-[1.02] contrast-[1.05] saturate-[1.1]"
                     />
                     <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-black/20 to-transparent opacity-60 group-hover:opacity-80 transition-opacity duration-500" />
@@ -529,9 +531,11 @@ const Properties = () => {
               {!formSubmitted ? (
                 <>
                   <div className="relative h-56">
-                    <img
+                    <ResponsiveImage
                       src={selectedProperty.image}
                       alt={selectedProperty.title}
+                      sizes="512px"
+                      loading="eager"
                       className="w-full h-full object-cover"
                     />
                     <div className="absolute inset-0 bg-gradient-to-t from-black/90 via-black/40 to-transparent" />
@@ -645,9 +649,11 @@ const Properties = () => {
               ) : (
                 <div className="max-h-[90vh] overflow-y-auto custom-scrollbar">
                   <div className="relative h-64">
-                    <img
+                    <ResponsiveImage
                       src={selectedProperty.image}
                       alt={selectedProperty.title}
+                      sizes="512px"
+                      loading="eager"
                       className="w-full h-full object-cover"
                     />
                     <div className="absolute inset-0 bg-gradient-to-t from-slate-950 via-slate-900/40 to-transparent" />
