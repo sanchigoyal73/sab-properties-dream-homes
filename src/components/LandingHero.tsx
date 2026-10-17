@@ -6,6 +6,7 @@ import { motion, animate, useMotionValue, useTransform } from "framer-motion";
 import { Phone, Loader2, CheckCircle2, Star, ShieldCheck, Trophy } from "lucide-react";
 import { toast } from "sonner";
 import { nameValidation, phoneValidation, emailValidation, sanitizeName, sanitizePhone, sanitizeEmail } from "@/utils/leadValidation";
+import { useHoneypot } from "@/hooks/use-honeypot";
 
 const formSchema = z.object({
   fullName: nameValidation,
@@ -41,6 +42,8 @@ const LandingHero = () => {
     mode: "onTouched",
   });
 
+  const honeypot = useHoneypot();
+
   const onSubmit = async (data: FormData) => {
     setIsSubmitting(true);
     try {
@@ -53,12 +56,13 @@ const LandingHero = () => {
       }
 
       const urlEncodedData = new URLSearchParams();
+      honeypot.stamp(urlEncodedData);
       Object.entries(data).forEach(([key, value]) => {
         urlEncodedData.append(key, value as string);
       });
       urlEncodedData.append("message", "Lead from Ads Landing Page");
 
-      await fetch(targetUrl, {
+      if (!honeypot.isBot()) await fetch(targetUrl, {
         method: "POST",
         mode: "no-cors",
         headers: {
@@ -173,6 +177,7 @@ const LandingHero = () => {
               </div>
 
               <form onSubmit={handleSubmit(onSubmit)} className="space-y-5">
+                {honeypot.field}
                 <div className="space-y-1">
                   <input
                     {...register("fullName", {
@@ -207,7 +212,7 @@ const LandingHero = () => {
                       <option value="" className="bg-neutral-900">Interest</option>
                       <option value="Office Space" className="bg-neutral-900 text-white">Office Space</option>
                       <option value="Showroom" className="bg-neutral-900 text-white">Showroom</option>
-                      <option value="Godown" className="bg-neutral-900 text-white">Godown</option>
+                      <option value="Warehouse" className="bg-neutral-900 text-white">Warehouse</option>
                       <option value="Other" className="bg-neutral-900 text-white">Other</option>
                     </select>
                     {errors.service && <p className="text-red-500 text-[10px] mt-1 ml-2 uppercase font-bold">{errors.service.message}</p>}

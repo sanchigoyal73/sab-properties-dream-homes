@@ -6,6 +6,7 @@ import { motion } from "framer-motion";
 import { MapPin, Phone, Mail, Clock, Loader2, Facebook, Instagram } from "lucide-react";
 import { toast } from "sonner";
 import { nameValidation, phoneValidation, emailValidation, sanitizeName, sanitizePhone, sanitizeEmail } from "@/utils/leadValidation";
+import { useHoneypot } from "@/hooks/use-honeypot";
 
 const formSchema = z.object({
   fullName: nameValidation,
@@ -36,6 +37,8 @@ const ContactSection = () => {
     alert("Please fill out all fields correctly. Check the red messages under the text boxes.");
   };
 
+  const honeypot = useHoneypot();
+
   const onSubmit = async (data: FormData) => {
     console.log("Submission started!", data);
     setIsSubmitting(true);
@@ -50,11 +53,12 @@ const ContactSection = () => {
 
       // Convert standard JSON to URLSearchParams which Google Apps Script loves
       const urlEncodedData = new URLSearchParams();
+      honeypot.stamp(urlEncodedData);
       Object.entries(data).forEach(([key, value]) => {
         urlEncodedData.append(key, value as string);
       });
 
-      await fetch(targetUrl, {
+      if (!honeypot.isBot()) await fetch(targetUrl, {
         method: "POST",
         mode: "no-cors",
         headers: {
@@ -170,6 +174,7 @@ const ContactSection = () => {
             transition={{ duration: 0.6 }}
           >
             <form className="space-y-5 bg-card p-8 rounded-xl border border-border" onSubmit={handleSubmit(onSubmit, onError)}>
+              {honeypot.field}
               <div className="grid md:grid-cols-2 gap-5">
                 <div className="space-y-1">
                   <input

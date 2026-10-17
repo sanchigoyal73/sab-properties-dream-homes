@@ -14,6 +14,7 @@ import { zodResolver } from "@hookform/resolvers/zod";
 import * as z from "zod";
 import { toast } from "sonner";
 import { singleNameValidation, phoneValidation, sanitizeName, sanitizePhone } from "@/utils/leadValidation";
+import { useHoneypot } from "@/hooks/use-honeypot";
 
 const formSchema = z.object({
   name: singleNameValidation,
@@ -57,18 +58,21 @@ const PreRentedLanding = () => {
     reset();
   };
 
+  const honeypot = useHoneypot();
+
   const onSubmit = async (data: FormData) => {
     setIsLoading(true);
     try {
       const targetUrl = import.meta.env.VITE_GOOGLE_SHEETS_URL;
       if (targetUrl) {
         const urlEncodedData = new URLSearchParams();
+        honeypot.stamp(urlEncodedData);
         urlEncodedData.append("fullName", data.name);
         urlEncodedData.append("phone", data.phone);
         urlEncodedData.append("service", "Pre-Rented Property Unlock");
         urlEncodedData.append("message", `Property: ${selectedProperty?.title} | Location: ${selectedProperty?.location}`);
         
-        await fetch(targetUrl, {
+        if (!honeypot.isBot()) await fetch(targetUrl, {
           method: "POST",
           mode: "no-cors",
           headers: { "Content-Type": "application/x-www-form-urlencoded" },
@@ -229,6 +233,7 @@ const PreRentedLanding = () => {
                   </div>
                   
                   <form onSubmit={handleSubmit(onSubmit)} className="space-y-4">
+                    {honeypot.field}
                     <div className="space-y-1">
                       <input
                         {...register("name", {

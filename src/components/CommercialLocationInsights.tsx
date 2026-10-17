@@ -12,8 +12,8 @@ const locations = [
   },
   {
     title: "Asaf Ali Road & Ajmeri Gate",
-    description: "The distribution powerhouse. Strategically located godowns and showrooms here serve as the primary supply link between Old Delhi's trade markets and the rest of the city.",
-    keywords: ["Godown in Asaf Ali Road", "Logistics Hub Delhi", "Trade Connectivity"],
+    description: "The distribution powerhouse. Strategically located warehouses and showrooms here serve as the primary supply link between Old Delhi's trade markets and the rest of the city.",
+    keywords: ["Warehouse in Asaf Ali Road", "Logistics Hub Delhi", "Trade Connectivity"],
     icon: Warehouse,
     stats: "Trade & Logistics"
   },
@@ -26,8 +26,8 @@ const locations = [
   },
   {
     title: "Okhla Industrial Estate",
-    description: "The modern warehouse solution. Okhla offers high-capacity godowns and industrial-grade commercial spaces with excellent connectivity to South Delhi and Noida.",
-    keywords: ["Okhla Warehouse Space", "Industrial Godown", "South Delhi Logistics"],
+    description: "The modern warehouse solution. Okhla offers high-capacity warehouses and industrial-grade commercial spaces with excellent connectivity to South Delhi and Noida.",
+    keywords: ["Okhla Warehouse Space", "Industrial Warehouse", "South Delhi Logistics"],
     icon: TrendingUp,
     stats: "Modern Storage"
   }
@@ -95,12 +95,12 @@ const CommercialLocationInsights = () => {
         <TrustedBy />
 
         <div className="mt-20 p-10 bg-white rounded-[2.5rem] border border-slate-100 shadow-sm">
-          <h3 className="font-display font-bold text-2xl text-foreground mb-8 text-center">Why Businesses Choose Delhi for Showrooms & Godowns?</h3>
+          <h3 className="font-display font-bold text-2xl text-foreground mb-8 text-center">Why Businesses Choose Delhi for Showrooms & Warehouses?</h3>
           <div className="grid md:grid-cols-3 gap-10">
             <div className="space-y-4">
               <h4 className="font-display font-bold text-primary text-sm uppercase tracking-wider">Unrivaled Trade Access</h4>
               <p className="text-xs text-muted-foreground leading-relaxed">
-                Delhi acts as the primary distribution node for North India. Securing a godown in Asaf Ali Road or Okhla ensures your supply chain is connected to one of the largest consumer markets in the world.
+                Delhi acts as the primary distribution node for North India. Securing a warehouse in Asaf Ali Road or Okhla ensures your supply chain is connected to one of the largest consumer markets in the world.
               </p>
             </div>
             <div className="space-y-4">

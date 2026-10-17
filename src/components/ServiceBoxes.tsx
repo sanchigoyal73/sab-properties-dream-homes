@@ -24,12 +24,12 @@ const ServiceBoxes = () => {
       image: "/officeSpaces/officeSpace1.jpg",
     },
     {
-      id: "godown",
-      title: "GODOWN",
-      description: "Spacious godown facilities with loading docks and secure storage solutions.",
-      properties: `${allProperties.filter(p => p.category === "Godown").length} Properties`,
-      cta: "Explore Godown Spaces",
-      link: "/properties?category=Godown",
+      id: "warehouse",
+      title: "WAREHOUSE",
+      description: "Spacious warehouse facilities with loading docks and secure storage solutions.",
+      properties: `${allProperties.filter(p => p.category === "Warehouse").length} Properties`,
+      cta: "Explore Warehouse Spaces",
+      link: "/properties?category=Warehouse",
       image: "/godown/godown4.jpg",
     },
     {

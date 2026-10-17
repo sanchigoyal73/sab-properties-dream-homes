@@ -6,6 +6,7 @@ import { zodResolver } from "@hookform/resolvers/zod";
 import * as z from "zod";
 import { toast } from "sonner";
 import { singleNameValidation, phoneValidation, sanitizeName, sanitizePhone } from "@/utils/leadValidation";
+import { useHoneypot } from "@/hooks/use-honeypot";
 
 const commercialImages = [
   "/pre-rented/preRented.jpg",
@@ -42,18 +43,21 @@ const PreRentedHero = () => {
     return () => clearInterval(timer);
   }, []);
 
+  const honeypot = useHoneypot();
+
   const onSubmit = async (data: FormData) => {
     setIsLoading(true);
     try {
       const targetUrl = import.meta.env.VITE_GOOGLE_SHEETS_URL;
       if (targetUrl) {
         const urlEncodedData = new URLSearchParams();
+        honeypot.stamp(urlEncodedData);
         urlEncodedData.append("fullName", data.name);
         urlEncodedData.append("phone", data.phone);
         urlEncodedData.append("service", "Pre-Rented Property Lead");
         urlEncodedData.append("message", "Lead from Pre-Rented Hero Section");
         
-        await fetch(targetUrl, {
+        if (!honeypot.isBot()) await fetch(targetUrl, {
           method: "POST",
           mode: "no-cors",
           headers: { "Content-Type": "application/x-www-form-urlencoded" },
@@ -188,6 +192,7 @@ const PreRentedHero = () => {
                     </div>
 
                     <form onSubmit={handleSubmit(onSubmit)} className="space-y-5">
+                      {honeypot.field}
                       <div className="space-y-2">
                         <label className="text-xs font-mono uppercase tracking-wider text-slate-400">Full Name</label>
                         <input

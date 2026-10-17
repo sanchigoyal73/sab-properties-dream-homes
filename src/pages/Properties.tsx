@@ -10,11 +10,16 @@ import propertyHeroImg from "@/assets/property-hero.png";
 import ResponsiveImage from "@/components/ResponsiveImage";
 
 const locations = ["All Locations", "Asaf Ali Road", "Connaught Place", "Karol Bagh", "Okhla", "Lajpat Nagar", "East of Kailash", "Kirti Nagar"];
-const propertyTypes = ["All Types", "Office/Serviced Office", "Showroom", "Godown", "Co-Working", "Pre-Rented"];
+const propertyTypes = ["All Types", "Office/Serviced Office", "Showroom", "Warehouse", "Co-Working", "Pre-Rented"];
 const sizeRanges = ["Any Size", "Under 1000 sq.ft", "1000-5000 sq.ft", "5000-10000 sq.ft", "10000+ sq.ft"];
+
+// "Godown" was renamed to "Warehouse"; keep old links and searches for godown working
+const legacyCategories: Record<string, string> = { Godown: "Warehouse" };
+const normalizeSearch = (q: string) => q.toLowerCase().replace(/godowns?/g, "warehouse");
 
 import { allProperties } from "@/data/properties";
 import { singleNameValidation, phoneValidation, sanitizeName, sanitizePhone } from "@/utils/leadValidation";
+import { useHoneypot } from "@/hooks/use-honeypot";
 
 const Properties = () => {
   const [searchParams] = useSearchParams();
@@ -62,7 +67,7 @@ const Properties = () => {
     }
 
     if (searchQuery) {
-      const q = searchQuery.toLowerCase();
+      const q = normalizeSearch(searchQuery);
       filtered = filtered.filter(p => 
         (p.title && p.title.toLowerCase().includes(q)) || 
         (p.location && p.location.toLowerCase().includes(q)) ||
@@ -78,7 +83,7 @@ const Properties = () => {
   useEffect(() => {
     const categoryParam = searchParams.get("category");
     if (categoryParam) {
-      setSelectedType(categoryParam);
+      setSelectedType(legacyCategories[categoryParam] ?? categoryParam);
       setShowFilters(true);
     }
   }, [searchParams]);
@@ -125,6 +130,8 @@ const Properties = () => {
   };
 
 
+  const honeypot = useHoneypot();
+
   const handleLeadSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
     if (!validateLeadForm()) return;
@@ -132,12 +139,13 @@ const Properties = () => {
       const targetUrl = import.meta.env.VITE_GOOGLE_SHEETS_URL;
       if (targetUrl) {
         const urlEncodedData = new URLSearchParams();
+        honeypot.stamp(urlEncodedData);
         urlEncodedData.append("fullName", leadFormData.name);
         urlEncodedData.append("phone", leadFormData.phone);
         urlEncodedData.append("service", "Property Unlock");
         urlEncodedData.append("message", `Property: ${selectedProperty?.title} | Category: ${selectedProperty?.category} | Location: ${selectedProperty?.location}`);
         
-        await fetch(targetUrl, {
+        if (!honeypot.isBot()) await fetch(targetUrl, {
           method: "POST",
           mode: "no-cors",
           headers: { "Content-Type": "application/x-www-form-urlencoded" },
@@ -162,6 +170,12 @@ const Properties = () => {
 
   return (
     <div className="min-h-screen bg-slate-50">
+      <SEO
+        title="Commercial Properties in Delhi | Offices, Showrooms & Warehouses"
+        description="Browse office spaces, showrooms, warehouses (godowns), co-working and pre-rented commercial properties for rent and sale across Delhi."
+        keywords="commercial property Delhi, office space Delhi, showroom in Delhi, warehouse in Delhi, godown in Delhi, godown for rent in Delhi, pre-rented property Delhi"
+        canonical="/properties"
+      />
       <Navbar />
 
       {/* Hero Section */}
@@ -571,6 +585,7 @@ const Properties = () => {
                     </div>
 
                     <form onSubmit={handleLeadSubmit} className="space-y-5">
+                      {honeypot.field}
                       <div className="space-y-2">
                         <label className="block text-[10px] font-display font-black text-muted-foreground uppercase tracking-widest ml-1">Full Name</label>
                         <div className="relative group">

@@ -25,7 +25,7 @@ export const blogs: BlogPost[] = [
       <p>The heart of Delhi remains a top choice for premium office spaces and retail outlets. Its historic charm combined with modern amenities makes it unbeatable.</p>
 
       <h3>2. Okhla Industrial Area</h3>
-      <p>Ideal for showrooms and godowns, Okhla offers robust infrastructure and excellent connectivity to Faridabad and Noida.</p>
+      <p>Ideal for showrooms and warehouses, Okhla offers robust infrastructure and excellent connectivity to Faridabad and Noida.</p>
 
       <h3>3. Nehru Place</h3>
       <p>Known as the IT hub, Nehru Place is perfect for tech startups and electronic businesses seeking a well-established ecosystem.</p>

@@ -76,11 +76,21 @@ const PropertyDetail = () => {
     window.scrollTo(0, 0);
   }, [id]);
 
+  // Warehouses used to be listed as "godowns" — keep that search term in the metadata
+  const isWarehouse = !!property && /warehouse/i.test(`${property.category} ${property.title}`);
+  const seoDescription = property && isWarehouse
+    ? `Warehouse (godown) in ${property.location}, Delhi. ${property.description}`
+    : property?.description;
+  const seoKeywords = property && isWarehouse
+    ? `warehouse in ${property.location}, godown in ${property.location}, warehouse in Delhi, godown in Delhi, godown for rent in Delhi`
+    : undefined;
+
   const propertySchema = property ? {
     "@context": "https://schema.org",
     "@type": "RealEstateListing",
     "name": property.title,
-    "description": property.description,
+    "description": seoDescription,
+    ...(seoKeywords && { "keywords": seoKeywords }),
     "image": `https://sabproperties.in${property.image}`,
     "url": `https://sabproperties.in/property/${property.id}`,
     "datePosted": "2024-01-01",
@@ -153,7 +163,8 @@ const PropertyDetail = () => {
     <div className="min-h-screen bg-white font-body">
       <SEO 
         title={property.title}
-        description={property.description}
+        description={seoDescription}
+        keywords={seoKeywords}
         canonical={`/property/${property.id}`}
         ogImage={property.image}
         structuredData={propertySchema || undefined}

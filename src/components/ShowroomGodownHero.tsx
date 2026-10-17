@@ -6,6 +6,7 @@ import { zodResolver } from "@hookform/resolvers/zod";
 import * as z from "zod";
 import { toast } from "sonner";
 import { singleNameValidation, phoneValidation, sanitizeName, sanitizePhone } from "@/utils/leadValidation";
+import { useHoneypot } from "@/hooks/use-honeypot";
 
 const commercialImages = [
   "/godown/godown.jpg",
@@ -44,18 +45,21 @@ const ShowroomGodownHero = () => {
     return () => clearInterval(timer);
   }, []);
 
+  const honeypot = useHoneypot();
+
   const onSubmit = async (data: FormData) => {
     setIsLoading(true);
     try {
       const targetUrl = import.meta.env.VITE_GOOGLE_SHEETS_URL;
       if (targetUrl) {
         const urlEncodedData = new URLSearchParams();
+        honeypot.stamp(urlEncodedData);
         urlEncodedData.append("fullName", data.name);
         urlEncodedData.append("phone", data.phone);
-        urlEncodedData.append("service", "Showroom & Godown Lead");
-        urlEncodedData.append("message", "Lead from Showroom and Godown Hero Section");
+        urlEncodedData.append("service", "Showroom & Warehouse Lead");
+        urlEncodedData.append("message", "Lead from Showroom and Warehouse Hero Section");
         
-        await fetch(targetUrl, {
+        if (!honeypot.isBot()) await fetch(targetUrl, {
           method: "POST",
           mode: "no-cors",
           headers: { "Content-Type": "application/x-www-form-urlencoded" },
@@ -138,7 +142,7 @@ const ShowroomGodownHero = () => {
 
             <h1 className="font-display font-black text-5xl md:text-6xl lg:text-[5rem] text-white leading-[1.05] tracking-tight mb-8 drop-shadow-xl">
               High-Impact <span className="text-primary">Showrooms</span> & <br />
-              Secure <span className="text-primary">Godowns</span> in Delhi
+              Secure <span className="text-primary">Warehouses</span> in Delhi
             </h1>
 
             <motion.p variants={fadeUp} className="text-slate-300 font-body text-lg md:text-xl leading-relaxed mb-10 max-w-2xl font-light">
@@ -190,6 +194,7 @@ const ShowroomGodownHero = () => {
                     </div>
 
                     <form onSubmit={handleSubmit(onSubmit)} className="space-y-5">
+                      {honeypot.field}
                       <div className="space-y-2">
                         <label className="text-xs font-mono uppercase tracking-wider text-slate-400">Full Name</label>
                         <input
@@ -250,7 +255,7 @@ const ShowroomGodownHero = () => {
                       <CheckCircle className="w-10 h-10 text-green-500" />
                     </motion.div>
                     <h3 className="font-display font-semibold text-2xl text-white mb-3">Request Received</h3>
-                    <p className="text-slate-400 text-sm mb-8 font-light leading-relaxed">Our experts will contact you shortly with matching showroom and godown options.</p>
+                    <p className="text-slate-400 text-sm mb-8 font-light leading-relaxed">Our experts will contact you shortly with matching showroom and warehouse options.</p>
                     <button 
                       onClick={() => setSubmitted(false)}
                       className="text-primary font-mono text-xs uppercase tracking-wider hover:text-white transition-colors border-b border-primary hover:border-white pb-1"

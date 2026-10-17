@@ -11,6 +11,7 @@ import Footer from "@/components/Footer";
 import SEO from "@/components/SEO";
 import contactHeroImg from "@/assets/contactheader.png";
 import { singleNameValidation, phoneValidation, emailValidation, sanitizeName, sanitizePhone, sanitizeEmail } from "@/utils/leadValidation";
+import { useHoneypot } from "@/hooks/use-honeypot";
 
 const formSchema = z.object({
   firstName: singleNameValidation.refine(val => val.trim().length >= 2, "First name must be at least 2 characters"),
@@ -44,6 +45,8 @@ const Contact = () => {
     mode: "onTouched",
   });
 
+  const honeypot = useHoneypot();
+
   const onSubmit = async (data: FormData) => {
     setIsSubmitting(true);
     try {
@@ -60,6 +63,7 @@ const Contact = () => {
         : data.message;
 
       const urlEncodedData = new URLSearchParams();
+      honeypot.stamp(urlEncodedData);
       urlEncodedData.append("fullName", `${data.firstName} ${data.lastName}`);
       urlEncodedData.append("email", data.email || "");
       urlEncodedData.append("phone", data.phone);
@@ -67,7 +71,7 @@ const Contact = () => {
       urlEncodedData.append("message", fullMessage || "");
       urlEncodedData.append("company", data.companyName || "");
 
-      await fetch(targetUrl, {
+      if (!honeypot.isBot()) await fetch(targetUrl, {
         method: "POST",
         mode: "no-cors",
         headers: {
@@ -288,6 +292,7 @@ const Contact = () => {
                 </p>
 
                 <form className="space-y-6" onSubmit={handleSubmit(onSubmit, (errs) => { console.log(errs); alert("Please check the form for errors in red."); })}>
+                  {honeypot.field}
                   <div className="grid md:grid-cols-2 gap-6">
                     <div>
                       <label className="block text-foreground font-display font-semibold text-sm mb-2">
@@ -382,7 +387,7 @@ const Contact = () => {
                       <option value="Office/Serviced Office">Office/Serviced Office</option>
                       <option value="Showroom">Showroom</option>
                       <option value="Co-Working">Co-Working</option>
-                      <option value="Godown">Warehouse/Godown</option>
+                      <option value="Warehouse">Warehouse</option>
                       <option value="Residential">Residential</option>
                     </select>
                     {errors.requirement && <p className="text-red-500 text-xs mt-1">{errors.requirement.message}</p>}

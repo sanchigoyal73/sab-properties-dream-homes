@@ -4,6 +4,7 @@ import { Link, useNavigate } from "react-router-dom";
 import { MapPin, Maximize, ArrowRight, Lock, X, CheckCircle, Star, ShieldCheck, Zap, CheckCircle2, Check } from "lucide-react";
 import { allProperties } from "@/data/properties";
 import { singleNameValidation, phoneValidation, sanitizeName, sanitizePhone } from "@/utils/leadValidation";
+import { useHoneypot } from "@/hooks/use-honeypot";
 
 const PropertiesSection = () => {
   const navigate = useNavigate();
@@ -49,6 +50,8 @@ const PropertiesSection = () => {
     return Object.keys(newErrors).length === 0;
   };
 
+  const honeypot = useHoneypot();
+
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
     if (!validateForm()) return;
@@ -56,12 +59,13 @@ const PropertiesSection = () => {
       const targetUrl = import.meta.env.VITE_GOOGLE_SHEETS_URL;
       if (targetUrl) {
         const urlEncodedData = new URLSearchParams();
+        honeypot.stamp(urlEncodedData);
         urlEncodedData.append("fullName", formData.name);
         urlEncodedData.append("phone", formData.phone);
         urlEncodedData.append("service", "Property Unlock");
         urlEncodedData.append("message", `Property: ${selectedProperty?.title} | Category: ${selectedProperty?.category} | Location: ${selectedProperty?.location}`);
         
-        await fetch(targetUrl, {
+        if (!honeypot.isBot()) await fetch(targetUrl, {
           method: "POST",
           mode: "no-cors",
           headers: { "Content-Type": "application/x-www-form-urlencoded" },
@@ -296,6 +300,7 @@ const PropertiesSection = () => {
                     </div>
                     
                     <form onSubmit={handleSubmit} className="space-y-4">
+                      {honeypot.field}
                       <div>
                         <input
                           type="text"

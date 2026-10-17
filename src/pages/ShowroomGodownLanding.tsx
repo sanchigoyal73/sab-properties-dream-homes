@@ -14,6 +14,7 @@ import { zodResolver } from "@hookform/resolvers/zod";
 import * as z from "zod";
 import { toast } from "sonner";
 import { singleNameValidation, phoneValidation, sanitizeName, sanitizePhone } from "@/utils/leadValidation";
+import { useHoneypot } from "@/hooks/use-honeypot";
 
 const formSchema = z.object({
   name: singleNameValidation,
@@ -44,9 +45,9 @@ const ShowroomGodownLanding = () => {
     setIsUnlocked(unlocked);
   }, []);
 
-  // Filter for Showroom and Godown (12 listings)
+  // Filter for Showroom and Warehouse (12 listings)
   const commercialProperties = allProperties.filter(p => 
-    p.category === "Showroom" || p.category === "Godown"
+    p.category === "Showroom" || p.category === "Warehouse"
   ).slice(0, 12);
 
   const handlePropertyClick = (property: typeof allProperties[0]) => {
@@ -59,18 +60,21 @@ const ShowroomGodownLanding = () => {
     reset();
   };
 
+  const honeypot = useHoneypot();
+
   const onSubmit = async (data: FormData) => {
     setIsLoading(true);
     try {
       const targetUrl = import.meta.env.VITE_GOOGLE_SHEETS_URL;
       if (targetUrl) {
         const urlEncodedData = new URLSearchParams();
+        honeypot.stamp(urlEncodedData);
         urlEncodedData.append("fullName", data.name);
         urlEncodedData.append("phone", data.phone);
         urlEncodedData.append("service", "Commercial Property Unlock");
         urlEncodedData.append("message", `Property: ${selectedProperty?.title} | Location: ${selectedProperty?.location}`);
         
-        await fetch(targetUrl, {
+        if (!honeypot.isBot()) await fetch(targetUrl, {
           method: "POST",
           mode: "no-cors",
           headers: { "Content-Type": "application/x-www-form-urlencoded" },
@@ -101,9 +105,10 @@ const ShowroomGodownLanding = () => {
   return (
     <div className="min-h-screen bg-white">
       <SEO 
-        title="Premium Showrooms & Godowns in Delhi | Retail & Logistics Spaces"
-        description="Discover high-visibility showrooms and secure godowns in Delhi's prime commercial hubs. Find the perfect space for your retail brand or logistics operations."
+        title="Premium Showrooms & Warehouses in Delhi | Retail & Logistics Spaces"
+        description="Discover high-visibility showrooms and secure warehouses (godowns) in Delhi's prime commercial hubs. Find the perfect space for your retail brand or logistics operations."
         canonical="/commercial-spaces-delhi"
+        keywords="showroom in Delhi, warehouse in Delhi, godown in Delhi, godown for rent in Delhi, warehouse for rent in Delhi, storage space Delhi"
         useBusinessSchema={true}
       />
       
@@ -126,7 +131,7 @@ const ShowroomGodownLanding = () => {
                 Inventory in Delhi
               </h2>
               <p className="text-muted-foreground font-body text-lg leading-relaxed">
-                Explore our handpicked selection of retail showrooms and storage godowns. Strategic locations with maximum business potential.
+                Explore our handpicked selection of retail showrooms and storage warehouses. Strategic locations with maximum business potential.
               </p>
             </div>
 
@@ -234,6 +239,7 @@ const ShowroomGodownLanding = () => {
                   </div>
                   
                   <form onSubmit={handleSubmit(onSubmit)} className="space-y-4">
+                    {honeypot.field}
                     <div className="space-y-1">
                       <input
                         {...register("name", {
