@@ -164,7 +164,7 @@ const ServicesPage = () => {
             </p>
           </motion.div>
 
-          <div className="space-y-16">
+          <div className="space-y-10 lg:space-y-16">
             {services.map((service, i) => (
               <motion.div
                 key={service.id}
@@ -179,17 +179,18 @@ const ServicesPage = () => {
               >
                 <div className="flex flex-col lg:flex-row items-stretch lg:h-[600px]">
                   {/* Content */}
-                  <div className="w-full lg:w-1/2 p-8 lg:p-12 flex flex-col justify-center h-full">
-                    <div className="w-16 h-16 rounded-2xl gradient-orange flex items-center justify-center mb-6">
+                  <div className="relative w-full lg:w-1/2 px-6 pb-8 pt-12 sm:px-8 lg:p-12 flex flex-col justify-center lg:h-full">
+                    {/* On small screens the icon sits on the bottom edge of the banner image above */}
+                    <div className="absolute z-10 -top-8 left-6 sm:left-8 lg:static w-16 h-16 rounded-2xl gradient-orange flex items-center justify-center lg:mb-6 shadow-lg ring-4 ring-white lg:shadow-none lg:ring-0">
                       <service.icon className="w-8 h-8 text-white" />
                     </div>
                     <h3 className="font-display font-extrabold text-2xl md:text-3xl text-foreground mb-4">
                       {service.title}
                     </h3>
-                    <p className="text-muted-foreground font-body text-base lg:text-lg leading-relaxed mb-6">
+                    <p className="text-muted-foreground font-body text-base lg:text-lg leading-relaxed mb-6 text-left lg:text-justify">
                       {service.description}
                     </p>
-                    <ul className="space-y-3 mb-8">
+                    <ul className="grid gap-3 sm:grid-cols-2 lg:grid-cols-1 mb-8">
                       {service.features.map((feature, index) => (
                         <motion.li
                           key={feature}
@@ -206,16 +207,15 @@ const ServicesPage = () => {
                     </ul>
                     <Link
                       to="/contact"
-                      className="inline-flex items-center gap-2 gradient-orange text-white font-display font-bold px-6 py-3 rounded-xl hover:opacity-90 transition-all"
+                      className="inline-flex items-center justify-center gap-2 gradient-orange text-white font-display font-bold px-6 py-3 rounded-xl hover:opacity-90 transition-all w-full sm:w-auto sm:self-start"
                     >
                       Get Started
                       <ArrowRight className="w-4 h-4" />
                     </Link>
                   </div>
 
-                  {/* Image Placeholder */}
-                  {/* Service Image */}
-                  <div className="w-full lg:w-1/2 relative min-h-[400px] lg:h-full overflow-hidden">
+                  {/* Service Image: banner on top for small screens, right half on desktop */}
+                  <div className="order-first lg:order-none w-full lg:w-1/2 relative h-52 sm:h-72 md:h-80 lg:h-full overflow-hidden">
                     <motion.img
                       src={service.image}
                       alt={service.title}
