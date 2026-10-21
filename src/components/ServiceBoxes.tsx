@@ -1,3 +1,4 @@
+import { Fragment } from "react";
 import { Link } from "react-router-dom";
 import { ArrowRight } from "lucide-react";
 import { motion } from "framer-motion";
@@ -117,7 +118,13 @@ const ServiceBoxes = () => {
                   <div className="transform transition-transform duration-500 ease-out group-hover:-translate-y-2">
                     {/* Category Title */}
                     <h3 className="font-display font-extrabold text-2xl lg:text-3xl text-white tracking-wider uppercase mb-2 drop-shadow-md">
-                      {category.title}
+                      {/* Wrap only at the slash on narrow cards, e.g. "WAREHOUSE/" then "GODOWN" */}
+                      {category.title.split("/").map((part, j, parts) => (
+                        <Fragment key={part}>
+                          <span className="whitespace-nowrap">{part}{j < parts.length - 1 && "/"}</span>
+                          {j < parts.length - 1 && <wbr />}
+                        </Fragment>
+                      ))}
                     </h3>
 
                     {/* Properties Count */}
