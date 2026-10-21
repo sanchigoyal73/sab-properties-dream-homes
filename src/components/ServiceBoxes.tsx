@@ -85,8 +85,8 @@ const ServiceBoxes = () => {
           <div className="w-24 h-1 bg-gradient-to-r from-primary to-orange-400 mx-auto mt-6 rounded-full" />
         </motion.div>
 
-        {/* Bento Grid layout */}
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4 lg:gap-6">
+        {/* Bento Grid layout: on wide screens the two wide cards sit in opposite corners */}
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-4 lg:gap-6">
           {categories.map((category, i) => (
             <motion.div
               key={category.id}
@@ -94,7 +94,7 @@ const ServiceBoxes = () => {
               whileInView={{ opacity: 1, scale: 1, y: 0 }}
               viewport={{ once: true, margin: "-60px" }}
               transition={{ type: "spring", stiffness: 130, damping: 18, delay: i * 0.07 }}
-              className={`group shadow-lg hover:shadow-2xl transition-all duration-500 hover:-translate-y-1 rounded-[2rem] cursor-pointer ${i === 0 ? "md:col-span-2 lg:col-span-2" : i === categories.length - 1 ? "md:col-span-2 lg:col-span-3" : "col-span-1"}`}
+              className={`group shadow-lg hover:shadow-2xl transition-all duration-500 hover:-translate-y-1 rounded-[2rem] cursor-pointer ${i === 0 ? "md:col-span-2 lg:col-span-2" : i === categories.length - 1 ? "md:col-span-2 lg:col-span-3 xl:col-span-2" : "col-span-1"}`}
             >
               <Link
                 to={category.link}
