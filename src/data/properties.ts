@@ -1193,7 +1193,15 @@ const KEYWORD_CATEGORIES: Record<string, RegExp> = {
   "Cloud Kitchen/Dark Store": /cloud\s*kitchen|dark\s*store/i,
 };
 
+// Category tiles that also show every listing from other categories,
+// e.g. warehouses/godowns can be used as cloud kitchens or dark stores
+const INCLUDED_CATEGORIES: Record<string, string[]> = {
+  "Cloud Kitchen/Dark Store": ["Warehouse"],
+};
+
 export const matchesCategory = (property: Property, category: string): boolean => {
   const keywords = KEYWORD_CATEGORIES[category];
-  return property.category === category || (!!keywords && keywords.test(`${property.title} ${property.description}`));
+  return property.category === category
+    || (INCLUDED_CATEGORIES[category] ?? []).includes(property.category)
+    || (!!keywords && keywords.test(`${property.title} ${property.description}`));
 };
