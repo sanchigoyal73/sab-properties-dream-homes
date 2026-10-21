@@ -361,7 +361,7 @@ const Properties = () => {
             <p className="text-slate-500 font-body text-xs font-semibold uppercase tracking-wider">
               {filteredProperties.length === 0 
                 ? "0 properties matched your search" 
-                : `${filteredProperties.length} properties found in our portfolio`}
+                : `${filteredProperties.length} ${filteredProperties.length === 1 ? "property" : "properties"} found in our portfolio`}
             </p>
           </div>
         </div>
