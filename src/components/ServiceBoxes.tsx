@@ -1,7 +1,7 @@
 import { Link } from "react-router-dom";
 import { ArrowRight } from "lucide-react";
 import { motion } from "framer-motion";
-import { allProperties } from "../data/properties";
+import { allProperties, matchesCategory } from "../data/properties";
 
 const ServiceBoxes = () => {
   const categories = [
@@ -50,6 +50,18 @@ const ServiceBoxes = () => {
       link: "/properties?category=Pre-Rented",
       image: "/pre-rented/preRented.jpg",
     },
+    {
+      id: "cloudkitchen",
+      title: "CLOUD KITCHEN/DARK STORE",
+      description: "Delivery-first spaces for cloud kitchens and quick-commerce dark stores, close to dense customer areas.",
+      properties: (() => {
+        const count = allProperties.filter(p => matchesCategory(p, "Cloud Kitchen/Dark Store")).length;
+        return `${count} ${count === 1 ? "Property" : "Properties"}`;
+      })(),
+      cta: "Explore Cloud Kitchens & Dark Stores",
+      link: "/properties?category=Cloud Kitchen/Dark Store",
+      image: "/pre-rented/preRented6.jpg",
+    },
   ];
 
   return (
@@ -81,7 +93,7 @@ const ServiceBoxes = () => {
               whileInView={{ opacity: 1, scale: 1, y: 0 }}
               viewport={{ once: true, margin: "-60px" }}
               transition={{ type: "spring", stiffness: 130, damping: 18, delay: i * 0.07 }}
-              className={`group shadow-lg hover:shadow-2xl transition-all duration-500 hover:-translate-y-1 rounded-[2rem] cursor-pointer ${i === 0 ? "md:col-span-2 lg:col-span-2" : "col-span-1"}`}
+              className={`group shadow-lg hover:shadow-2xl transition-all duration-500 hover:-translate-y-1 rounded-[2rem] cursor-pointer ${i === 0 ? "md:col-span-2 lg:col-span-2" : i === categories.length - 1 ? "md:col-span-2 lg:col-span-3" : "col-span-1"}`}
             >
               <Link
                 to={category.link}
