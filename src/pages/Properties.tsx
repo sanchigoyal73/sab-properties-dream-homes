@@ -10,14 +10,14 @@ import propertyHeroImg from "@/assets/property-hero.png";
 import ResponsiveImage from "@/components/ResponsiveImage";
 
 const locations = ["All Locations", "Asaf Ali Road", "Connaught Place", "Karol Bagh", "Okhla", "Lajpat Nagar", "East of Kailash", "Kirti Nagar"];
-const propertyTypes = ["All Types", "Office/Serviced Office", "Showroom", "Warehouse", "Co-Working", "Pre-Rented"];
+const propertyTypes = ["All Types", "Office/Serviced Office", "Showroom", "Warehouse", "Co-Working", "Pre-Rented", "Cloud Kitchen/Dark Store"];
 const sizeRanges = ["Any Size", "Under 1000 sq.ft", "1000-5000 sq.ft", "5000-10000 sq.ft", "10000+ sq.ft"];
 
 // "Godown" was renamed to "Warehouse"; keep old links and searches for godown working
 const legacyCategories: Record<string, string> = { Godown: "Warehouse" };
 const normalizeSearch = (q: string) => q.toLowerCase().replace(/godowns?/g, "warehouse");
 
-import { allProperties } from "@/data/properties";
+import { allProperties, matchesCategory } from "@/data/properties";
 import { singleNameValidation, phoneValidation, sanitizeName, sanitizePhone } from "@/utils/leadValidation";
 import { useHoneypot } from "@/hooks/use-honeypot";
 
@@ -55,7 +55,7 @@ const Properties = () => {
       count++;
     }
     if (selectedType !== "All Types") {
-      filtered = filtered.filter(p => p.category === selectedType);
+      filtered = filtered.filter(p => matchesCategory(p, selectedType));
       count++;
     }
     if (selectedSize !== "Any Size") {

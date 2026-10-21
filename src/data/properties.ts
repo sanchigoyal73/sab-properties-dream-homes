@@ -1186,3 +1186,14 @@ export const allProperties: Property[] = [
   }
 
 ];
+
+// Category tiles that group listings by what they are rather than their category field,
+// e.g. a pre-rented dark store also counts as a "Cloud Kitchen/Dark Store" property
+const KEYWORD_CATEGORIES: Record<string, RegExp> = {
+  "Cloud Kitchen/Dark Store": /cloud\s*kitchen|dark\s*store/i,
+};
+
+export const matchesCategory = (property: Property, category: string): boolean => {
+  const keywords = KEYWORD_CATEGORIES[category];
+  return property.category === category || (!!keywords && keywords.test(`${property.title} ${property.description}`));
+};
