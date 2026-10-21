@@ -25,7 +25,7 @@ const ServiceBoxes = () => {
     },
     {
       id: "warehouse",
-      title: "WAREHOUSE",
+      title: "WAREHOUSE/GODOWN",
       description: "Spacious warehouse facilities with loading docks and secure storage solutions.",
       properties: `${allProperties.filter(p => p.category === "Warehouse").length} Properties`,
       cta: "Explore Warehouse Spaces",
